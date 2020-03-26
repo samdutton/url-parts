@@ -17,7 +17,7 @@
     document.getElementById('file-selector').onchange = event => {
       // files is a FileList; file is a File.
       for (const file of event.target.files) { 
-        console.log(file.name, file.type);
+        console.log(file, file.name, file.type);
       }; 
     }
   }
