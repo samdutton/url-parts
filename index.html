@@ -11,6 +11,7 @@
   <body>
     
   <input type="file" id="file-selector" multiple>
+  <div id="dnd"></div>
     
   <script>
   if (window.FileList && window.File) {
@@ -22,6 +23,24 @@
     }
   }
   </script>
+    
+<script>
+  const dnd = document.getElementById('dnd');
+  if (window.FileList && window.File) {
+    dnd.ondragover = event => {
+      event.stopPropagation();
+      event.preventDefault();
+      event.dataTransfer.dropEffect = 'copy';
+    });
+    input.ondrop = event => {
+      event.stopPropagation();
+      event.preventDefault();
+      for (const file of event.dataTransfer.files) {
+        console.log(`name: ${file.name}, type: ${file.type}`);
+      }
+    }); 
+  }
+</script>
 
 
   </body>
