@@ -8,9 +8,9 @@ label[for=pin] {
 }
 input#pin {
   font-size: 20px;
-  letter-spacing: 0.2em;
+  letter-spacing: 5px;
   padding: 20px;
-  width: 4ch;
+  width: 5ch;
   -webkit-text-security: disc;
 }
 
