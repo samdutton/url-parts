@@ -8,12 +8,13 @@ label[for=pin] {
 }
 input#pin {
   font-size: 20px;
-  padding: 10px;
+  letter-spacing: 0.2em;
+  padding: 20px;
   width: 4ch;
+  -webkit-text-security: disc;
 }
 
 [placeholder]:focus::-webkit-input-placeholder {
-  transition: opacity 0.5s 0.5s ease; 
   opacity: 0;
 }
 
