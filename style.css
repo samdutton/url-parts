@@ -1,32 +1,28 @@
 body {
-  font-family: sans-serif;
+  font-family: 'Google Sans', sans-serif;
   font-weight: 500;
-  margin: 100px;
-}
-label[for=pin] {
-  font-size: 20px;
-}
-input#pin {
-  font-size: 20px;
-  letter-spacing: 5px;
-  padding: 20px;
-  width: 5ch;
-  -webkit-text-security: disc;
+  margin: 50px;
 }
 
-[placeholder]:focus::-webkit-input-placeholder {
-  opacity: 0;
+div {
+  margin: 0 0 20px 0;
 }
 
-@media (min-width: 450px) {
-  label[for=pin] {
-    font-size: unset;
-  }
-
-  input#pin {
-    font-size: unset;
-    padding: 5px;
-  }
-
+input {
+  padding: 5px;
 }
 
+label {
+  display: inline-block;
+  width: 80px;
+}
+
+section#new-line label {
+  display: block;
+}
+
+
+
+section#same-line {
+  margin: 0 0 50px 0;
+}
