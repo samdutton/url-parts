@@ -27,7 +27,7 @@ input {
   width: 100%;
 }
 
-input:invalid {
+input[type=email]:not(:placeholder-shown):invalid {
   outline-color: red;
   outline-offset: -2px;
   outline-style: auto;
