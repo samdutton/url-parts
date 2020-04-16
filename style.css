@@ -1,46 +1,4 @@
-body {
-  font-family: 'Google Sans', sans-serif;
-  font-weight: 500;
-  margin: 50px;
-}
-
-button {
-  background-color: #eee;
-  border: 1px solid #ccc;
-  color: #444;
-  display: block;
-  font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
-  padding: 5px; 
-}
-
-button:hover {
-  background-color: #ccc;
-  color: black;
-}
-
-form {
-  margin: 0 auto;
-  max-width: 500px;
-}
-
 input {
+  display: block;
   margin: 0 0 20px 0;
-  max-width: 500px;
-  padding: 7px 5px;
-  width: 100%;
-}
-
-input[type=email]:focus:not(:placeholder-shown):invalid {
-  outline-color: red;
-  outline-offset: -2px;
-  outline-style: auto;
-}
-
-
-
-label {
-  display: inline-block;
-  width: 80px;
 }
