@@ -1,15 +1,14 @@
 body {
-  margin: 50px;
+  margin: 10px;
 }
 
 form  {
   margin: 0 auto;
-  max-width: 500px;
+  max-width: calc(100% - 100px);
 }
 
 input {
   display: block;
-  font-size: 20px;
   margin: 0 0 20px 0;
   padding: 10px;
   width: 100%;
@@ -21,6 +20,9 @@ button {
 }
 
 @media (min-width: 450px) {
+body {
+  margin: 50px;
+}
   button {
     font-size: 13px;
   }
