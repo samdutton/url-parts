@@ -1,0 +1,22 @@
+body {
+  align-items: center;
+  background: #fafafa;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+}
+
+html {
+  height: 100%;
+}
+
+input {
+  background: white;
+  font-size: 100px;
+  font-family: Google Sans;
+  padding: 20px 40px;
+}
+
+input::placeholder {
+  color: #ccc;
+}
