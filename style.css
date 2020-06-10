@@ -12,6 +12,8 @@ html {
 
 input {
   background: white;
+  border-radius: 5px;
+  border-width: 5px;
   font-size: 100px;
   font-family: Google Sans;
   padding: 20px 40px;
