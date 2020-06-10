@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Test</title>
+    <title>Signin form</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">    
@@ -9,10 +9,24 @@
     <script src="/script.js" defer></script>
   </head>  
   <body>
-    
 
-  <input placeholder="Placeholders..." required>
-    
+    <form action="#" method="post">
+      
+      <h1>My website</h1>
+
+      <section>        
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder=" " autocomplete="email" required autofocus>
+      </section>
+            
+      <section>        
+        <label for="current-password">Password</label>
+        <input id="current-password" name="current-password" type="password" autocomplete="current-password" aria-describedby="password-constraints" required>
+      </section>
+
+      <button id="signin">Sign in</button>
+      
+    </form>
 
   </body>
 </html>
