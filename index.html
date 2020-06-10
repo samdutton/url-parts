@@ -20,13 +20,18 @@
       </section>
             
       <section>        
+        <label for="dob">DOB</label>
+        <input id="dob" name="dob" type="texg" placeholder="mm-yy" autocomplete="dob" required>
+      </section>
+            
+      <section>        
         <label for="current-password">Password</label>
         <input id="current-password" name="new-password" type="password" autocomplete="current-password" aria-describedby="password-constraints" required>
         <button id="toggle-password" type="button" aria-label="Show password as plain text. Warning: this will display your password on the screen.">Show password</button>
         <div id="password-constraints">Eight or more characters, with at least one&nbsp;lowercase and one uppercase letter.</div>
       </section>
 
-      <button id="signin">Sign in</button>
+      <button id="signin" disabled>Sign in</button>
       
     </form>
 
