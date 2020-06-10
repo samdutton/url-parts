@@ -12,7 +12,7 @@
 
     <form action="#" method="post">
       
-      <h1>My website</h1>
+      <h1>Sign in</h1>
 
       <section>        
         <label for="email">Email</label>
@@ -22,9 +22,11 @@
       <section>        
         <label for="current-password">Password</label>
         <input id="current-password" name="current-password" type="password" autocomplete="current-password" aria-describedby="password-constraints" required>
+        <button id="toggle-password" type="button" aria-label="Show password as plain text. Warning: this will display your password on the screen.">Show password</button>
+        <div id="password-constraints">Eight or more characters, with at least one&nbsp;lowercase and one uppercase letter.</div>
       </section>
 
-      <button id="signin">Go!</button>
+      <button id="signin">Sign in</button>
       
     </form>
 
