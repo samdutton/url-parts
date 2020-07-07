@@ -1,32 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Sign-UP form</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">    
-    <link rel="stylesheet" href="/style.css">
+    <title>Sign-up form</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/style.css" />
     <script src="/script.js" defer></script>
-  </head>  
+  </head>
   <body>
-
-    <form action="#" method="post">
-      
-      <h1>Sign up</h1>
-
-      <section>        
-        <label for="email">Email</label>
-        <input id="email" name="username" type="email" placeholder=" " autocomplete="email" required autofocus>
-      </section>
-            
-      <section>        
-        <label for="new-password">Password</label>
-        <input type="password" name="new-password" id="password" autocomplete="current-password">
-      </section>
-
-      <button id="signup" disabled>Sign up</button>
-      
+    <form id="login" action="signup.php" method="post">
+      <input type="text" autocomplete="username" />
+      <input type="password" autocomplete="new-password" />
+      <input type="submit" value="Sign Up!" />
     </form>
-
   </body>
 </html>
