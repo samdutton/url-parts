@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Sign-in form</title>
+    <title>Sign-UP form</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">    
@@ -12,26 +12,19 @@
 
     <form action="#" method="post">
       
-      <h1>Sign in</h1>
+      <h1>Sign up</h1>
 
       <section>        
         <label for="email">Email</label>
-        <input id="email" name="email" type="email" placeholder=" " autocomplete="email" required autofocus>
+        <input id="email" name="username" type="email" placeholder=" " autocomplete="email" required autofocus>
       </section>
             
       <section>        
-        <label for="dob">DOB</label>
-        <input id="dob" name="dob" type="texg" placeholder="mm-yy" autocomplete="dob" required>
-      </section>
-            
-      <section>        
-        <label for="current-password">Password</label>
-        <input id="current-password" name="new-password" type="password" autocomplete="current-password" aria-describedby="password-constraints" required>
-        <button id="toggle-password" type="button" aria-label="Show password as plain text. Warning: this will display your password on the screen.">Show password</button>
-        <div id="password-constraints">Eight or more characters, with at least one&nbsp;lowercase and one uppercase letter.</div>
+        <label for="new-password">Password</label>
+        <input type="password" name="new-password" id="password" autocomplete="current-password">
       </section>
 
-      <button id="signin" disabled>Sign in</button>
+      <button id="signup" disabled>Sign up</button>
       
     </form>
 
