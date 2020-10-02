@@ -1,20 +1,8 @@
-# [TODO: name]
+# Address form codelab: step 5
 
-[TODO: purpose]
+Codelab for a simple address form.
 
-# GitHub
-
-Code for this demo is available on Github at [TODO](https://github.com/TODO).
-
-This demo is maintained by [TODO: Twitter handle](https://twitter.com/TODO).
-
-# Comments and suggestions
-
-If you find bugs with this demo or would like to suggest changes, please message [TODO: Twitter handle](https//twitter.com/TODO).
-
-# Find out more
-
-For more information see [TODO: web.dev article title](https://web.dev/TODO).
+See [Sign-up form best practices](https://web.dev/sign-up-form-best-practices).
 
 # License
 
