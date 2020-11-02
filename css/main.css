@@ -76,7 +76,8 @@ form section {
 
 select {
   font-size: var(--mobile-font-size);
-  padding: 15px;
+  height: 50px;
+  width: 100%; /* don't need to account for padding :/ */
 }
 
 textarea {
@@ -86,6 +87,7 @@ textarea {
   height: 5.5em;
   line-height: 1.4em;
   padding: 15px;
+  width: 90%; /* fallback */
   width: calc(100% - 30px); /* full width minus padding */
 }
 
@@ -119,7 +121,7 @@ textarea {
   }
   select {
     font-size: var(--desktop-font-size);
-    padding: 15px;
+    
   }
   textarea {
     font-size: var(--desktop-font-size);
