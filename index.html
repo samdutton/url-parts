@@ -15,13 +15,18 @@
     <form action="#" method="post">
 
       <h1>Address form codelab</h1>
-
+      
       <section>
-        <label for="address">Address</label>
-        <input required="" autocomplete="address" id="address" name="address">
+        <label for="address-line1">Name</label>
+        <input required="" autocomplete="name" id="name" name="name">
       </section>
 
       <section>
+        <label for="address">Address</label>
+        <textarea required="" autocomplete="address" id="address" name="address"></textarea>
+      </section>
+
+<!--       <section>
         <label for="address-line1">Address line 1</label>
         <input required="" autocomplete="address-line1" id="address-line1" name="address-line1">
       </section>
@@ -29,21 +34,21 @@
       <section>
         <label for="address-line2">Address line 2</label>
         <input autocomplete="address-line2" id="address-line2" name="address-line2">
-      </section>
+      </section> -->
 
       <section>
-        <label for="locality">City, town or locality</label>
+        <label for="locality">Postal town</label>
         <input required="" autocomplete="locality" id="locality" name="locality">
       </section>
 
       <section>
-        <label for="state">State, region or county</label>
-        <input autocomplete="state" id="state" name="state">
+        <label for="postal-code">Postal code</label>
+        <input required="" autocomplete="postal-code" id="postal-code" name="postal-code">
       </section>
 
       <section>
-        <label for="postal-code">ZIP or postal code</label>
-        <input required="" autocomplete="postal-code" id="postal-code" name="postal-code">
+        <label for="state">Country/Region</label>
+        <input autocomplete="state" id="state" name="state">
       </section>
             
 
