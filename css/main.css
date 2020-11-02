@@ -74,6 +74,10 @@ form section {
   position: relative; /* for password toggle positioning */
 }
 
+textarea {
+  font-family: sans-serif;
+}
+
 @media (min-width: 450px) {
   body {
     margin: 20px 50px;
