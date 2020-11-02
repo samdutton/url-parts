@@ -63,7 +63,7 @@ input[type=password]:not(:focus):invalid {
 
 label {
   display: block;
-  font-size: 20px;
+  font-size: 22px;
   font-size: var(--mobile-font-size);
   font-weight: 500;
   margin: 0 0 3px 0;
@@ -74,8 +74,19 @@ form section {
   position: relative; /* for password toggle positioning */
 }
 
+select {
+  font-size: var(--mobile-font-size);
+  padding: 15px;
+}
+
 textarea {
   font-family: sans-serif;
+  font-size: 22px; /* fallback */
+  font-size: var(--mobile-font-size);
+  height: 5.5em;
+  line-height: 1.4em;
+  padding: 15px;
+  width: calc(100% - 30px); /* full width minus padding */
 }
 
 @media (min-width: 450px) {
@@ -104,6 +115,13 @@ textarea {
   }
   label {
     font-size: 14px; /* fallback */
+    font-size: var(--desktop-font-size);
+  }
+  select {
+    font-size: var(--desktop-font-size);
+    padding: 15px;
+  }
+  textarea {
     font-size: var(--desktop-font-size);
   }
 }
