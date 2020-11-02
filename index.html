@@ -16,12 +16,30 @@
 
       <h1>Address form codelab</h1>
 
-      <section>        
-        <label for="email">Name</label>
-        <input id="email" name="email" type="email" autocomplete="username" required autofocus>
+      <section>
+        <label for="address-line1">Address line 1</label>
+        <input required="" autocomplete="address-line1" id="address-line1" name="address-line1">
       </section>
 
-        <input autocomplete="address-line-1" name="address-line-1" id="address-line-1">
+      <section>
+        <label for="address-line2">Address line 2</label>
+        <input autocomplete="address-line2" id="address-line2" name="address-line2">
+      </section>
+
+      <section>
+        <label for="locality">City, town or locality</label>
+        <input required="" autocomplete="locality" id="locality" name="locality">
+      </section>
+
+      <section>
+        <label for="state">State, region or county</label>
+        <input autocomplete="state" id="state" name="state">
+      </section>
+
+      <section>
+        <label for="postal-code">ZIP or postal code</label>
+        <input required="" autocomplete="postal-code" id="postal-code" name="postal-code">
+      </section>
             
 
       <button id="continue">Continue</button>
