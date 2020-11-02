@@ -66,7 +66,7 @@ label {
   font-size: 22px;
   font-size: var(--mobile-font-size);
   font-weight: 500;
-  margin: 0 0 3px 0;
+  margin: 0 0 8px 0;
 }
 
 form section {
@@ -76,7 +76,7 @@ form section {
 
 select {
   font-size: var(--mobile-font-size);
-  height: 50px;
+  padding: 15px 15px 15px 11px;
   width: 100%; /* don't need to account for padding :/ */
 }
 
@@ -99,7 +99,7 @@ textarea {
     font-size: 14px; /* fallback */
     font-size: var(--desktop-font-size);
   }
-  button#sign-in {
+  button {
     margin: 40px 0 0 0;
   }
   div#password-constraints {
