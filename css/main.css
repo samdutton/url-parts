@@ -89,6 +89,8 @@ form section#country-region {
 }
 
 select {
+  background-color: white;;
+  border: 1px solid #ccc;
   font-size: var(--mobile-font-size);
   padding: 15px 15px 15px 11px;
   width: 100%; /* don't need to account for padding :/ */
@@ -128,7 +130,7 @@ textarea {
     font-size: 28px;
     font-size: calc(2 * var(--desktop-font-size));
     font-weight: 500;
-    margin: 0 0 80px 0;
+    margin: 0 0 60px 0;
   }
   input {
     font-size: 14px; /* fallback */
@@ -147,7 +149,7 @@ textarea {
   select {
     font-size: var(--desktop-font-size);   
   }
-  select#country-region {
+  section#country-region select {
     max-width: 345px;
   }
   textarea {
@@ -157,7 +159,7 @@ textarea {
 
 @media (min-width: 800px) {
   body {
-    margin: 50px;
+    margin: 30px;
   }
 }
 

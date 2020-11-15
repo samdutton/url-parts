@@ -2,7 +2,7 @@
 <html lang="en">
   
   <head>
-    <title>Address</title>
+    <title>Address form</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,7 +19,7 @@
       <h1>Address form</h1>
       
       <section>
-        <label for="address-line1">Name</label>
+        <label for="name">Name</label>
         <input required autocomplete="name" id="name" name="name">
       </section>
 
@@ -28,7 +28,9 @@
         <textarea required autocomplete="address" id="address" name="address"></textarea>
       </section>
 
-<!--       <section>
+      <!-- Alternative address format -->
+      <!--       
+      <section>
         <label for="address-line1">Address line 1</label>
         <input required="" autocomplete="address-line1" id="address-line1" name="address-line1">
       </section>
@@ -36,16 +38,17 @@
       <section>
         <label for="address-line2">Address line 2</label>
         <input autocomplete="address-line2" id="address-line2" name="address-line2">
-      </section> -->
+      </section> 
+      -->
 
       <section>
-        <label for="postal-code">ZIP/postal code (optional)</label>
+        <label for="postal-code">ZIP or postal code (optional)</label>
         <input autocomplete="postal-code" id="postal-code" name="postal-code">
       </section>
 
-      <section>
+      <section id="country-region">
         <label for="">Country or region</label>
-        <select required autocomplete="country-region" id="country-region" name="country-region">
+        <select required autocomplete="country" name="country">
             <option selected value="SPACER"> </option>
             <option value="AF">Afghanistan</option>
             <option value="AX">Åland Islands</option>
