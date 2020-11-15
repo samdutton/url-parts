@@ -1,12 +1,12 @@
 :root {
   --desktop-font-size: 16px;
-  --mobile-font-size: 22px;
+  --mobile-font-size: 20px;
 }
 
 body {
   font-family: sans-serif;
   font-weight: 500;
-  margin: 10px 20px;
+  margin: 15px 20px;
 }
 
 button {
@@ -16,7 +16,7 @@ button {
   color: #444;
   cursor: pointer;
   display: block;
-  font-size: 22px; /* fallback */
+  font-size: 20px; /* fallback */
   font-size: var(--mobile-font-size);
   font-weight: 500;
   margin: 3px 0 0 0;
@@ -35,15 +35,15 @@ button:not(:disabled):hover {
 
 form {
   border-bottom: 1px solid #ccc;
-  margin: 0 0 40px 0;
-  padding: 0 0 40px 0;
+  margin: 0 0 20px 0;
+  padding: 0 0 20px 0;
 }
 
 h1 {
   border-bottom: 1px solid #ccc;
   font-size: 28px;
-  font-weight: 600;
-  margin: 0 0 20px 0;
+  font-weight: 300;
+  margin: 0 0 27px 0;
   padding: 0 0 5px 0;
 }
 
@@ -64,10 +64,10 @@ input:not(:focus):invalid {
 
 label {
   display: block;
-  font-size: 22px;
+  font-size: 20px;
   font-size: var(--mobile-font-size);
-  font-weight: 500;
-  margin: 0 0 8px 0;
+  font-weight: 300;
+  margin: 0 0 5px 0;
 }
 
 main {
@@ -75,9 +75,17 @@ main {
   max-width: 500px;
 }
 
+p {
+  font-size: 19px;
+  font-weight: 400;
+}
+
 form section {
-  margin: 0 0 20px 0;
-  position: relative; /* for password toggle positioning */
+  margin: 0 0 15px 0;
+}
+
+form section#country-region {
+  margin: 0 0 25px 0;
 }
 
 select {
@@ -87,6 +95,7 @@ select {
 }
 
 textarea {
+  border: 1px solid#ccc;
   font-family: sans-serif;
   font-size: 22px; /* fallback */
   font-size: var(--mobile-font-size);
