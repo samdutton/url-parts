@@ -11,3 +11,32 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+
+const form = document.querySelector('form');
+const saveAddressButton = document.querySelector('button#save-address');
+
+form.addEventListener('submit', handleFormSubmission);                       
+
+function handleFormSubmission(event) {
+  event.preventDefault();
+  validate();
+  form.reportValidity();
+  if (form.checkValidity() === false) {
+    console.log(`Invalid value ${datalistInput.value} in input`);
+    // Handle invalid form
+  } else {
+    // On a production site do form submission.
+    alert('Saving year!')
+    saveButton.disabled = 'true';
+  }
+}
+
+function validate() {
+  let message= '';
+  if (!/\d{4}/.test(datalistInput.value)) {
+    console.log(`Invalid value ${datalistInput.value} in input`);
+		message = 'Four digit year.';
+  }
+  datalistInput.setCustomValidity(message);
+}
+
