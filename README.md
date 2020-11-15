@@ -1,8 +1,8 @@
-# Address form codelab: step 5
+# Address form best practices
 
-Codelab for a simple address form.
+Best practices for address form elements and element attributes.
 
-See [Sign-up form best practices](https://web.dev/sign-up-form-best-practices).
+See [Payment and address form best practices](https://web.dev/payment-and-address-form-best-practices).
 
 # License
 
