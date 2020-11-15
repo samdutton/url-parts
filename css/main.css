@@ -120,6 +120,10 @@ textarea {
   div#password-constraints {
     font-size: 14px;
   }
+  form {
+    margin: 0 0 40px 0;
+    padding: 0 0 40px 0;
+  }
   h1 {
     font-size: 28px;
     font-size: calc(2 * var(--desktop-font-size));
@@ -130,13 +134,21 @@ textarea {
     font-size: 14px; /* fallback */
     font-size: var(--desktop-font-size);
   }
+  input#postal-code {
+    max-width: 313px;
+  }
   label {
     font-size: 14px; /* fallback */
     font-size: var(--desktop-font-size);
   }
+  p {
+    font-weight: 300;
+  }
   select {
-    font-size: var(--desktop-font-size);
-    
+    font-size: var(--desktop-font-size);   
+  }
+  select#country-region {
+    max-width: 345px;
   }
   textarea {
     font-size: var(--desktop-font-size);
