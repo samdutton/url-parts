@@ -22,21 +22,21 @@ function handleFormSubmission(event) {
   validate();
   form.reportValidity();
   if (form.checkValidity() === false) {
-    console.log(`Invalid value ${datalistInput.value} in input`);
-    // Handle invalid form
+    // Handle invalid form data.
   } else {
     // On a production site do form submission.
-    alert('Saving year!')
-    saveButton.disabled = 'true';
+    alert('Saving address!')
+    saveAddressButton.disabled = 'true';
   }
 }
 
+// Do form validation.
 function validate() {
-  let message= '';
-  if (!/\d{4}/.test(datalistInput.value)) {
-    console.log(`Invalid value ${datalistInput.value} in input`);
-		message = 'Four digit year.';
-  }
-  datalistInput.setCustomValidity(message);
+  // let message= '';
+  // if (!/someregex/.test(someInput.value)) {
+  //   console.log(`Invalid value ${someInput.value} for someInput`);
+	// 	 message = 'Explain how to enter a valid value';
+  // }
+  // someInput.setCustomValidity(message);
 }
 
