@@ -25,8 +25,9 @@ function handleFormSubmission(event) {
     // Handle invalid form data.
   } else {
     // On a production site do form submission.
-    alert('Saving address!')
+    saveAddressButton.textContent = 'Saving...';
     saveAddressButton.disabled = 'true';
+    alert('Saving address!');
   }
 }
 

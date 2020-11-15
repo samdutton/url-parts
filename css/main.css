@@ -34,8 +34,9 @@ button:not(:disabled):hover {
 }
 
 form {
-  margin: 0 auto;
-  max-width: 500px;
+  border-bottom: 1px solid #ccc;
+  margin: 0 0 40px 0;
+  padding: 0 0 40px 0;
 }
 
 h1 {
@@ -67,6 +68,11 @@ label {
   font-size: var(--mobile-font-size);
   font-weight: 500;
   margin: 0 0 8px 0;
+}
+
+main {
+  margin: 0 auto;
+  max-width: 500px;
 }
 
 form section {
