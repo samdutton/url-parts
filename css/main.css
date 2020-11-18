@@ -66,8 +66,8 @@ label {
   display: block;
   font-size: 20px;
   font-size: var(--mobile-font-size);
-  font-weight: 300;
-  margin: 0 0 5px 0;
+  font-weight: 400;
+  margin: 0 0 8px 0;
 }
 
 main {
