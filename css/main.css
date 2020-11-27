@@ -113,7 +113,7 @@ select {
   display: inline-block;
   font-size: var(--mobile-font-size);
   padding: 15px 15px 15px 11px;
-  width: 45%;
+  width: 100%;
 }
 
 textarea {
@@ -210,5 +210,9 @@ textarea {
 
   form section {
     margin: 0 0 35px 0;
+  }
+
+  section#country-region select {
+    max-width: 345px;
   }
 }
