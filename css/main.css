@@ -7,7 +7,7 @@
 body {
   font-family: sans-serif;
   font-weight: 500;
-  margin: 15px 15px 0 15px;
+  margin: 10px 15px 0 15px;
 }
 
 button {
@@ -57,8 +57,8 @@ h1 {
   border-bottom: 1px solid #ccc;
   font-size: 28px;
   font-weight: 300;
-  margin: 0 0 30px 0;
-  padding: 0 0 10px 0;
+  margin: 0 0 25px 0;
+  padding: 0;
 }
 
 input {
@@ -80,7 +80,7 @@ label {
   font-size: 20px;
   font-size: var(--large-mobile-font-size);
   font-weight: 400;
-  margin: 0 0 8px 0;
+  margin: 0 0 1px 0;
 }
 
 main {
@@ -94,7 +94,7 @@ p {
 }
 
 form section {
-  margin: 0 0 15px 0;
+  margin: 0 0 17px 0;
   position: relative;
 }
 
@@ -112,7 +112,7 @@ select {
   border: 1px solid #ccc;
   display: inline-block;
   font-size: var(--mobile-font-size);
-  padding: 17px 15px 17px 11px;
+  padding: 15px 15px 15px 11px;
   width: 100%;
 }
 
@@ -120,7 +120,7 @@ textarea {
   border: 1px solid#ccc;
   font-family: sans-serif;
   font-size: 22px; /* fallback */
-  font-size: var(--mobile-font-size);
+  font-size: var(--small-mobile-font-size);
   height: 5.5em;
   line-height: 1.4em;
   padding: 15px;
@@ -141,8 +141,6 @@ textarea {
   h1 {
     font-size: 36px;
     font-weight: 500;
-    margin: 0 0 30px 0;
-    padding: 0 0 0 0;
   }
 
   input {
@@ -153,7 +151,6 @@ textarea {
   label {
     font-size: 22px; /* fallback */
     font-size: var(--large-mobile-font-size);
-    margin: 0 0 1px 0;
   }
 
   p {
@@ -162,12 +159,24 @@ textarea {
   }
 
   form section {
-    margin: 0 0 13px 0;
+    margin: 0 0 15px 0;
   }
 
   form section:last-of-type {
     margin: 0 0 30px 0;
   }
+  
+  select {
+    font-size: 22px; /* fallback */
+    font-size: var(--large-mobile-font-size);
+  }
+  
+  textarea {
+    font-size: 22px; /* fallback */
+    font-size: var(--large-mobile-font-size);
+  }
+
+
 }
 
 @media (min-width: 500px) {
