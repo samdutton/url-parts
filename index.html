@@ -20,12 +20,12 @@
       
       <section>
         <label for="name">Name</label>
-        <input required autocomplete="name" id="name" name="name" pattern="[\p{L} \-\.]+">
+        <input id="name" name="name" autocomplete="name" pattern="[\p{L} \-\.]+" required>
       </section>
 
       <section>
         <label for="address">Address</label>
-        <textarea required autocomplete="address" id="address" name="address"></textarea>
+        <textarea id="address" name="address" autocomplete="address" required></textarea>
       </section>
 
       <!-- Alternative address format -->
@@ -43,12 +43,12 @@
 
       <section>
         <label for="postal-code">ZIP or postal code (optional)</label>
-        <input autocomplete="postal-code" id="postal-code" name="postal-code">
+        <input id="postal-code" name="postal-code" autocomplete="postal-code">
       </section>
 
       <section id="country-region">
         <label for="">Country or region</label>
-        <select required autocomplete="country" name="country"  enterkeyhint="done">
+        <select id="country" name="country" autocomplete="country" enterkeyhint="done" required>
             <option selected value="SPACER"> </option>
             <option value="AF">Afghanistan</option>
             <option value="AX">Åland Islands</option>
