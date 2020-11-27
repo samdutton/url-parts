@@ -1,26 +1,27 @@
 :root {
-  --desktop-font-size: 16px;
-  --mobile-font-size: 20px;
+  --small-mobile-font-size: 20px;
+  --large-mobile-font-size: 22px;
+  --desktop-font-size: 18px;
 }
 
 body {
   font-family: sans-serif;
   font-weight: 500;
-  margin: 15px 20px;
+  margin: 20px 10px 0 20px;
 }
 
 button {
-  background-color: #eee;
+  background-color: black;
   border: 1px solid #ccc;
   border-radius: 2px;
-  color: #444;
+  color: #eee;
   cursor: pointer;
   display: block;
   font-size: 20px; /* fallback */
-  font-size: var(--mobile-font-size);
-  font-weight: 500;
+  font-size: var(--large-mobile-font-size);
+  font-weight: 400;
   margin: 3px 0 0 0;
-  padding: 10px;
+  padding: 14px;
 }
 
 button:disabled {
@@ -29,8 +30,21 @@ button:disabled {
 }
 
 button:not(:disabled):hover {
-  background-color: #ccc;
-  color: black;
+  background-color: #333;
+  color: white;
+}
+
+div.explanation {
+  font-size: 14px;
+  margin: 10px 0 0 0;
+}
+
+section#cc-exp-csc div:not(:last-child) {
+  margin: 0 10px 0 0;
+}
+
+div#exp-month-year {
+  width: 50%;
 }
 
 form {
@@ -43,20 +57,19 @@ h1 {
   border-bottom: 1px solid #ccc;
   font-size: 28px;
   font-weight: 300;
-  margin: 0 0 27px 0;
-  padding: 0 0 5px 0;
+  margin: 0 0 30px 0;
+  padding: 0 0 10px 0;
 }
 
 input {
   border: 1px solid #ccc;
   font-size: 22px; /* fallback */
-  font-size: var(--mobile-font-size);
+  font-size: var(--large-mobile-font-size);
   padding: 15px;
   width: 90%; /* fallback */
   width: calc(100% - 30px); /* full width minus padding */
 }
 
-input:not(:focus):invalid,
 input:not(:focus):invalid {
   color: red;
   outline-color: red;
@@ -65,7 +78,7 @@ input:not(:focus):invalid {
 label {
   display: block;
   font-size: 20px;
-  font-size: var(--mobile-font-size);
+  font-size: var(--large-mobile-font-size);
   font-weight: 400;
   margin: 0 0 8px 0;
 }
@@ -82,18 +95,25 @@ p {
 
 form section {
   margin: 0 0 15px 0;
+  position: relative;
 }
 
-form section#country-region {
+form section:last-of-type {
   margin: 0 0 25px 0;
 }
 
+section#cc-exp-csc {
+  display: flex;
+  justify-content: space-between;
+}
+
 select {
-  background-color: white;;
+  background-color: white;
   border: 1px solid #ccc;
+  display: inline-block;
   font-size: var(--mobile-font-size);
   padding: 15px 15px 15px 11px;
-  width: 100%; /* don't need to account for padding :/ */
+  width: 45%;
 }
 
 textarea {
@@ -108,58 +128,87 @@ textarea {
   width: calc(100% - 30px); /* full width minus padding */
 }
 
-@media (min-width: 450px) {
+@media (min-width: 400px) {
   body {
-    margin: 20px 50px;
+    margin: 40px 20px 0 40px;
   }
+
   button {
-    font-size: 14px; /* fallback */
-    font-size: var(--desktop-font-size);
+    font-size: 20px; /* fallback */
+    font-size: var(--large-mobile-font-size);
   }
-  button {
-    margin: 40px 0 0 0;
+
+  div.explanation {
+    font-size: 16px;
   }
-  div#password-constraints {
-    font-size: 14px;
-  }
-  form {
-    margin: 0 0 40px 0;
-    padding: 0 0 40px 0;
-  }
+
   h1 {
-    font-size: 28px;
-    font-size: calc(2 * var(--desktop-font-size));
+    font-size: 36px;
     font-weight: 500;
     margin: 0 0 60px 0;
   }
+
   input {
-    font-size: 14px; /* fallback */
-    font-size: var(--desktop-font-size);
+    font-size: 22px; /* fallback */
+    font-size: var(--large-mobile-font-size);
   }
-  input#postal-code {
-    max-width: 313px;
-  }
+
   label {
-    font-size: 14px; /* fallback */
-    font-size: var(--desktop-font-size);
+    font-size: 22px; /* fallback */
+    font-size: var(--large-mobile-font-size);
+    margin: 0 0 10px 0;
   }
+
   p {
-    font-weight: 300;
+    font-weight: 100;
+    line-height: 1.5em;
   }
-  select {
-    font-size: var(--desktop-font-size);   
+
+  form section {
+    margin: 0 0 40px 0;
   }
-  section#country-region select {
-    max-width: 345px;
+
+  form section:last-of-type {
+    margin: 0 0 60px 0;
   }
-  textarea {
+}
+
+@media (min-width: 500px) {
+  body {
+    margin: 70px 70px 0 70px;
+  }
+
+  button {
+    font-size: 18px; /* fallback */
     font-size: var(--desktop-font-size);
   }
-}
 
-@media (min-width: 800px) {
-  body {
-    margin: 30px;
+  section#cc-exp-csc div:not(:last-child) {
+    margin: 0 20px 0 0;
+  }
+
+  form {
+    margin: 0 0 20px 0;
+    padding: 0 0 150px 0;
+  }
+
+  h1 {
+    font-size: 36px;
+    font-weight: 100;
+  }
+
+  input {
+    font-size: 18px; /* fallback */
+    font-size: var(--desktop-font-size);
+  }
+
+  label {
+    font-size: 18px; /* fallback */
+    font-size: var(--desktop-font-size);
+    margin: 0 0 10px 0;
+  }
+
+  form section {
+    margin: 0 0 35px 0;
   }
 }
-
