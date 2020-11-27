@@ -211,8 +211,4 @@ textarea {
   form section {
     margin: 0 0 35px 0;
   }
-
-  section#country-region select {
-    max-width: 345px;
-  }
 }
