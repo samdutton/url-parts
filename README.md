@@ -2,15 +2,16 @@
 
 Best practices for address form elements and element attributes.
 
-See [Payment and address form best practices](https://web.dev/payment-and-address-form-best-practices).
 
 # Comments and suggestions
 
 If you find bugs with this demo or would like to suggest changes, please message [@sw12](https//twitter.com/@sw12).
 
+
 # Find out more
 
 For more information see [Payment and address form best practices](https://web.dev/payment-and-address-form-best-practices).
+
 
 # License
 
