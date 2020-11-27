@@ -57,7 +57,7 @@ h1 {
   border-bottom: 1px solid #ccc;
   font-size: 28px;
   font-weight: 300;
-  margin: 0 0 25px 0;
+  margin: 0 0 20px 0;
   padding: 0;
 }
 
@@ -65,7 +65,7 @@ input {
   border: 1px solid #ccc;
   font-size: 22px; /* fallback */
   font-size: var(--large-mobile-font-size);
-  padding: 15px;
+  padding: 12px;
   width: 90%; /* fallback */
   width: calc(100% - 30px); /* full width minus padding */
 }
@@ -112,7 +112,7 @@ select {
   border: 1px solid #ccc;
   display: inline-block;
   font-size: var(--mobile-font-size);
-  padding: 15px 15px 15px 11px;
+  padding: 12px 12px 12px 11px;
   width: 100%;
 }
 
@@ -123,7 +123,7 @@ textarea {
   font-size: var(--small-mobile-font-size);
   height: 5.5em;
   line-height: 1.4em;
-  padding: 15px;
+  padding: 12px;
   width: 90%; /* fallback */
   width: calc(100% - 30px); /* full width minus padding */
 }
@@ -195,12 +195,13 @@ textarea {
 
   form {
     margin: 0 0 20px 0;
-    padding: 0 0 150px 0;
+    padding: 0 0 100px 0;
   }
 
   h1 {
     font-size: 36px;
     font-weight: 100;
+    margin: 0 0 60px 0;
   }
 
   input {
@@ -211,10 +212,14 @@ textarea {
   label {
     font-size: 18px; /* fallback */
     font-size: var(--desktop-font-size);
-    margin: 0 0 10px 0;
+    margin: 0 0 6px 0;
   }
 
   form section {
     margin: 0 0 35px 0;
+  }
+
+  form section:last-of-type {
+    margin: 0 0 60px 0;
   }
 }
