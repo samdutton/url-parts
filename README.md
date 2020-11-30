@@ -3,6 +3,13 @@
 Best practices for address form elements and element attributes.
 
 
+This example uses a single **Address** textarea with `autocomplete="street-address"`. 
+
+[address-line.glitch.me](https://address-line.glitch.me) is the same, but with 
+**Address line 1** and **Address line 2** inputs.
+
+
+
 # Comments and suggestions
 
 If you find bugs with this demo or would like to suggest changes, please message [@sw12](https//twitter.com/@sw12).
