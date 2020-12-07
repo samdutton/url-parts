@@ -12,7 +12,7 @@ This example uses a single **Address** textarea with `autocomplete="street-addre
 
 # Comments and suggestions
 
-If you find bugs with this demo or would like to suggest changes, please message [@sw12](https//twitter.com/@sw12).
+If you find bugs with this demo or would like to suggest changes, please message [@sw12](https//twitter.com/sw12).
 
 
 # Find out more
