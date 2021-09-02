@@ -7,6 +7,14 @@ SPDX-License-Identifier: Apache-2.0 */
   --desktop-font-size: 18px;
 }
 
+:-webkit-autofill {
+  border: 2px solid blue;
+}
+
+:autofill {
+  border-style: dotted;
+}
+
 body {
   font-family: sans-serif;
   font-weight: 500;
