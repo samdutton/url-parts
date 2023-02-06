@@ -60,34 +60,37 @@ urlInput.oninput = () => {
     return;
   }
 
+  // Get the eTLD and eTLD+1.
   let etld;
   let etld1;
-  // Try it where we expect a match
   if (psl.some(el => {
     etld = el;
     return hostname.includes(el);
   })) {
     console.log(`etld found: "${etld}"`);
     const regExp = new RegExp(`\\w+\.${etld}`);
-    console.log(regExp);
-    etld1 = urlText.match(regExp);
-    console.log(`etld+1: "${etld1}"`);
+    etld1 = urlText.match(regExp)[0];
+    console.log('etld+1:', etld1);
   }
 
-
-  // Get eTLD and eTLD+1 using Public Suffix List entries.
-  // if (psl.some(etld => pathname.includes(etld))) {
-  //     console.log('PSL match:', pathname, etld);
-  // }
-
-  // console.log('pathname: ', pathname);
-  // console.log('scheme', scheme);
-  // console.log(origin, hostname, scheme);
-
+  // Add span for the origin.
+  // The origin contains the hostname (site), which contains the eTLD+1,
+  // which contains the eTLD :).
   urlPartsDiv.innerHTML = urlText.replace(origin,
     `<span id="origin">${origin}</span>`);
+
   urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(hostname,
     `<span id="hostname">${hostname}</span>`);
+
+  // If the URL uses an eTLD, add spans for eTLD+1 and eTLD.
+  if (etld) {
+    console.log('hostname:', hostname, 'etld1:', etld1);
+     urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(etld1,
+    `<span id="etld1">${etld1}</span>`);
+     urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(etld,
+    `<span id="etld">${etld}</span>`);
+  }
+
   // Hack: if the pathname is / then highlight the / after the origin(not a / after the scheme).
   if (pathname === '/') {
     urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(/\/$/,
@@ -96,6 +99,7 @@ urlInput.oninput = () => {
     urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(pathname,
       `<span id="pathname">${pathname}</span>`);
   }
+
   if (filename) {
     urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(filename,
       `<span id="filename">${filename}</span>`);
