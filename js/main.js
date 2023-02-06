@@ -8,9 +8,8 @@ const urlInput = document.querySelector('input#url');
 const urlPartsDiv = document.querySelector('div#url-parts');
 
 urlInput.oninput = () => {
-  // https://www.example.com
   const urlText = urlInput.value;
-  //  console.log(`urlText: ${urlText}`);
+
   // URL API allows URLs such as https://foo or https://f.
   // URLs like tv.tv are possible.
   if (!urlText || !urlText.match(/\w{2,}\.\w{2,}/)) {
@@ -33,11 +32,11 @@ urlInput.oninput = () => {
   const hash = url.hash;
   const hostname = url.hostname;
   const origin = url.origin;
-  const search = url.search;
   let pathname = url.pathname;
+  const search = url.search;
 
   // Get filename.
-  //Need to handle `example.com/foo` as opposed to `example.com/foo.html`
+  // Need to handle `example.com/foo` as opposed to `example.com/foo.html`
   const endPart = urlText.split('#').shift().
     split('?').shift().split('/').pop();
   // Need to handle URLs like `web.dev`: URL must have a `/` to have a filename.
@@ -49,10 +48,9 @@ urlInput.oninput = () => {
   if (pathname === '/' && !urlText.match(/\/$/)) {
     pathname = '';
   }
-
   const scheme =
     urlText.match(/^https:\/\//) ? 'https' :
-    urlText.match(/^http:\/\//)  ? 'http'  : '';
+      urlText.match(/^http:\/\//) ? 'http' : '';
   // Avoid a couple of common mistakes: single / or missing :
   if (scheme === '' &&
       urlText.match(/^https?:\/\w/) || urlText.match(/^https?:\w/) || urlText.match(/^https?\/\w/)) {
@@ -61,21 +59,12 @@ urlInput.oninput = () => {
   }
 
   // Get the eTLD and eTLD+1.
-  let etld;
-  let etld1;
-  if (psl.some(el => {
-    etld = el;
-    return hostname.includes(el);
-  })) {
-    console.log(`etld found: "${etld}"`);
-    const regExp = new RegExp(`\\w+\.${etld}`);
-    etld1 = urlText.match(regExp)[0];
-    console.log('etld+1:', etld1);
-  }
+  const etld = psl.find((el) => hostname.includes(el));
+  const regExp = new RegExp(`\\w+\.${etld}`);
+  const etld1 = urlText.match(regExp)&& urlText.match(regExp)[0];
 
   // Add span for the origin.
-  // The origin contains the hostname (site), which contains the eTLD+1,
-  // which contains the eTLD :).
+  // Span hierarchy: hostname (site) > eTLD+1 > eTLD > TLD.
   urlPartsDiv.innerHTML = urlText.replace(origin,
     `<span id="origin">${origin}</span>`);
 
@@ -84,12 +73,21 @@ urlInput.oninput = () => {
 
   // If the URL uses an eTLD, add spans for eTLD+1 and eTLD.
   if (etld) {
-    console.log('hostname:', hostname, 'etld1:', etld1);
-     urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(etld1,
-    `<span id="etld1">${etld1}</span>`);
-     urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(etld,
-    `<span id="etld">${etld}</span>`);
+    urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(etld1,
+      `<span id="etld1">${etld1}</span>`);
+    urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(etld,
+      `<span id="etld">${etld}</span>`);
   }
+
+  // Wrap TLD in a span.
+  // If the hostname includes an eTLD, urlPartsDiv.innerHTML will be wrapped in a span.
+  // Otherwise, the whole hostname will be wrapped in a span.
+  const domainParts = etld ? etld.split('.') : hostname.split('.');
+  const tld = domainParts.pop();
+  const otherParts = domainParts.join('.');
+  const tldRegExp = new RegExp(`${otherParts}.(${tld})`);
+  urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(tldRegExp,
+    otherParts + '.<span id="tld">$1</span>');
 
   // Hack: if the pathname is / then highlight the / after the origin(not a / after the scheme).
   if (pathname === '/') {
@@ -118,6 +116,5 @@ urlInput.oninput = () => {
     urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(search,
       `<span id="search">${search}</span>`);
   }
+};
 
-
-}
