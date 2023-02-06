@@ -1,13 +1,6 @@
-# Address form best practices
+# URL parts
 
-Best practices for address form elements and element attributes.
-
-
-This example uses a single **Address** textarea with `autocomplete="street-address"`. 
-
-[address-line.glitch.me](https://address-line.glitch.me) is the same, but with 
-**Address line 1** and **Address line 2** inputs.
-
+Displays the names of parts of a URL.
 
 
 # Comments and suggestions
@@ -17,7 +10,7 @@ If you find bugs with this demo or would like to suggest changes, please message
 
 # Find out more
 
-For more information see [Payment and address form best practices](https://web.dev/payment-and-address-form-best-practices).
+For more information see [URL parts](https://web.dev/url).
 
 
 # License
