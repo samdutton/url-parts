@@ -82,6 +82,7 @@ div#highlight {
 }
 
 div#url-parts {
+  color: #444;
   font-family: 'Roboto Mono', monospace;
   font-size: 16px;
   font-weight: 100;
@@ -186,113 +187,111 @@ div#container span::before {
 }
 
 span#etld {
-  border-bottom: 1px solid red;
+  border-bottom: 1px solid #ea4335;
   padding: 0 0 30px 0;
 }
 
 span#etld::before {
-  color: red;
+  color: #ea4335;
   content: 'eTLD';
   top: 50px;
 }
 
 span#etld1 {
-  border-bottom: 1px solid red;
+  border-bottom: 1px solid #ea4335;
   padding: 0 0 55px 0;
 }
 
 span#etld1::before {
-  color: red;
+  color: #ea4335;
   content: 'eTLD+1';
   top: 75px;
 }
 
 span#filename {
-  border-bottom: 1px solid orange;
+  border-bottom: 1px solid #fbbc04;
   padding: 0 0 5px 0;
 }
 
 span#filename::before {
-  color: orange;
+  color: #fbbc04;
   content: 'filename';
   top: 25px;
 }
 
 span#hash {
-  border-bottom: 1px solid orange;
+  border-bottom: 1px solid #fbbc04;
   padding: 0 0 5px 0;
 }
 
 span#hash::before {
-  color: orange;
+  color: #fbbc04;
   content: 'hash';
   top: 25px;
 }
 
 span#hostname {
-  border-top: 1px solid green;
+  border-top: 1px solid #34a853;
   padding: 0 0 0 0;
 }
 
 span#hostname::before {
-  color: green;
+  color: #34a853;
   content: 'site';
   top: -25px;
 }
 
 span#origin {
-  border-top: 1px solid green;
-  /* margin: 0 0 0 0; */
+  border-top: 1px solid #34a853;
   padding: 25px 0 0 0;
 }
 
 span#origin::before {
-  color: green;
+  color: #34a853;
   content: 'origin';
   top: -50px;
 }
 
 span#pathname {
-  border-top: 1px solid orange;
+  border-top: 1px solid #fbbc04;
   padding: 0 0 0 0;
-  /* border: none; */
 }
 
 span#pathname::before {
-  color: orange;
+  color: #fbbc04;
   content: 'pathname';
   top: -25px;
 }
 
 span#scheme {
-  border-bottom: 1px solid blue;
+  border-bottom: 1px solid #4285f4;
   padding: 0 0 5px 0;
 }
 
 span#scheme::before {
-  color: blue;
+  color: #4285f4;
   content: 'scheme';
   top: 25px;
 }
 
 span#search {
-  border-bottom: 1px solid orange;
+  border-bottom: 1px solid #fbbc04;
   padding: 0 0 5px 0;
 }
 
 span#search::before {
-  color: orange;
+  color: #fbbc04;
   content: 'search';
   top: 25px;
 }
 
 span#tld {
-  border-bottom: 1px solid red;
+  border-bottom: 1px solid #ea4335;
   padding: 0 0 5px 0;
 }
 
 span#tld::before {
-  color: red;
+  color: #ea4335;
   content: 'TLD';
   top: 25px;
 }

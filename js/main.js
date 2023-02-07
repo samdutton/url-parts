@@ -58,10 +58,25 @@ urlInput.oninput = () => {
     return;
   }
 
+  let etldRegExp;
   // Get the eTLD and eTLD+1.
-  const etld = psl.find((el) => hostname.includes(el));
-  const regExp = new RegExp(`\\w+\.${etld}`);
-  const etld1 = urlText.match(regExp)&& urlText.match(regExp)[0];
+  const etld = psl.find((el) => {
+    etldRegExp = new RegExp(`\\w+.${el}$`);
+    if (el === 'co.uk') {
+      console.log(etldRegExp);
+      console.log('hostname', hostname);
+    }
+    return hostname.match(etldRegExp);
+  });
+  console.log('etld', etld);
+  let etld1;
+  if (etld) {
+    console.log('etldRegExp', etldRegExp);
+    const etld1RegExp = new RegExp(`[^\/\.]+\.${etld}`);
+    console.log('regExp', etld1RegExp);
+    etld1 = urlText.match(etld1RegExp) && urlText.match(etld1RegExp)[0];
+    console.log('etld1', etld1);
+  }
 
   // Add span for the origin.
   // Span hierarchy: hostname (site) > eTLD+1 > eTLD > TLD.
