@@ -149,8 +149,10 @@ ol {
 
 p {
   color: #444;
+  font-size: 16px;
   font-weight: 300;
   line-height: 1.6em;
+  margin: 0 0 50px 0;
 }
 
 p.borderBelow {
@@ -261,6 +263,17 @@ span#pathname::before {
   color: #fbbc04;
   content: 'pathname';
   top: -25px;
+}
+
+span#port {
+  border-bottom: 1px solid #4285f4;
+  padding: 0 0 5px 0;
+}
+
+span#port::before {
+  color: #4285f4;
+  content: 'port';
+  top: 25px;
 }
 
 span#scheme {

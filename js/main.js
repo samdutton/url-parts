@@ -8,7 +8,7 @@ const urlInput = document.querySelector('input#url');
 const urlPartsDiv = document.querySelector('div#url-parts');
 
 urlInput.oninput = () => {
-  const urlText = urlInput.value;
+  let urlText = urlInput.value;
 
   // URL API allows URLs such as `https://foo` or `https://f`.
   // Also want to avoid URLs like `//foo` or `foo.co.`.
@@ -17,24 +17,26 @@ urlInput.oninput = () => {
     urlPartsDiv.innerHTML = '';
     return;
   }
+
+
   let url;
   try {
-    url = new URL(urlText);
+    // Hack to allow URLs without scheme.
+    url = urlText.match(/^https?:\/\//) ? new URL(urlText) :
+      new URL(`https://${urlText}`);
   } catch {
-    try {
-      // Hack to allow URLs without scheme.
-      url = new URL(`https://${urlText}`);
-    } catch {
-      console.log(`${urlText} is not a valid URL`);
-      urlPartsDiv.innerHTML = '';
-      return;
-    }
+    console.log(`${urlText} is not a valid URL`);
+    urlPartsDiv.innerHTML = '';
+    return;
   }
+
+  console.log('url', url);
 
   const hash = url.hash;
   const hostname = url.hostname;
   const origin = url.origin;
   let pathname = url.pathname;
+  const port = url.port;
   const search = url.search;
 
   // Get filename.
@@ -65,8 +67,8 @@ urlInput.oninput = () => {
   const etld = psl.find((el) => {
     etldRegExp = new RegExp(`\\w+.${el}$`);
     if (el === 'co.uk') {
-      console.log(etldRegExp);
-      console.log('hostname', hostname);
+      // console.log(etldRegExp);
+      // console.log('hostname', hostname);
     }
     return hostname.match(etldRegExp);
   });
@@ -110,6 +112,7 @@ urlInput.oninput = () => {
     urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(/\/$/,
       `<span id="pathname">/</span>`);
   } else if (pathname) {
+    console.log('pathname found:', pathname);
     urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(pathname,
       `<span id="pathname">${pathname}</span>`);
   }
@@ -121,6 +124,12 @@ urlInput.oninput = () => {
   if (hash) {
     urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(hash,
       `<span id="hash">${hash}</span>`);
+  }
+  console.log('port, pathname before', port, pathname);
+  if (port) {
+    console.log('port, pathname inside', port, pathname);
+    urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(`:${port}`,
+      `:<span id="port">${port}</span>`);
   }
   if (scheme) {
     urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(scheme,
