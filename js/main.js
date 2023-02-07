@@ -10,9 +10,10 @@ const urlPartsDiv = document.querySelector('div#url-parts');
 urlInput.oninput = () => {
   const urlText = urlInput.value;
 
-  // URL API allows URLs such as https://foo or https://f.
-  // URLs like tv.tv are possible.
-  if (!urlText || !urlText.match(/\w{2,}\.\w{2,}/)) {
+  // URL API allows URLs such as `https://foo` or `https://f`.
+  // Also want to avoid URLs like `//foo` or `foo.co.`.
+  // URLs like `tv.tv` are valid.
+  if (!urlText || !urlText.match(/\w{2,}\.\w{2,}/) || urlText.match(/$\./)) {
     urlPartsDiv.innerHTML = '';
     return;
   }
@@ -21,10 +22,11 @@ urlInput.oninput = () => {
     url = new URL(urlText);
   } catch {
     try {
-      // Hack to allow URLs without protocol.
+      // Hack to allow URLs without scheme.
       url = new URL(`https://${urlText}`);
     } catch {
       console.log(`${urlText} is not a valid URL`);
+      urlPartsDiv.innerHTML = '';
       return;
     }
   }
@@ -68,14 +70,10 @@ urlInput.oninput = () => {
     }
     return hostname.match(etldRegExp);
   });
-  console.log('etld', etld);
   let etld1;
   if (etld) {
-    console.log('etldRegExp', etldRegExp);
     const etld1RegExp = new RegExp(`[^\/\.]+\.${etld}`);
-    console.log('regExp', etld1RegExp);
     etld1 = urlText.match(etld1RegExp) && urlText.match(etld1RegExp)[0];
-    console.log('etld1', etld1);
   }
 
   // Add span for the origin.
@@ -99,10 +97,13 @@ urlInput.oninput = () => {
   // Otherwise, the whole hostname will be wrapped in a span.
   const domainParts = etld ? etld.split('.') : hostname.split('.');
   const tld = domainParts.pop();
-  const otherParts = domainParts.join('.');
-  const tldRegExp = new RegExp(`${otherParts}.(${tld})`);
-  urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(tldRegExp,
-    otherParts + '.<span id="tld">$1</span>');
+  // tld may be empty in some scenarios
+  if (tld.match(/\w{2,}/)) {
+    const otherParts = domainParts.join('.');
+    const tldRegExp = new RegExp(`${otherParts}.(${tld})`);
+    urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(tldRegExp,
+      otherParts + '.<span id="tld">$1</span>');
+  }
 
   // Hack: if the pathname is / then highlight the / after the origin(not a / after the scheme).
   if (pathname === '/') {
