@@ -7,8 +7,19 @@ import psl from './psl.js';
 const urlInput = document.querySelector('input#url');
 const urlPartsDiv = document.querySelector('div#url-parts');
 
-urlInput.oninput = () => {
-  let urlText = urlInput.value;
+const searchParams = new URLSearchParams(window.location.search);
+const urlParam = searchParams.get('url');
+if (urlParam) {
+  console.log(urlParam);
+  urlInput.value = urlParam;
+  handleUrl();
+}
+
+urlInput.oninput = handleUrl;
+
+function handleUrl() {
+  const urlText = urlInput.value;
+  console.log('urlText', urlText);
 
   // URL API allows URLs such as `https://foo` or `https://f`.
   // Also want to avoid URLs like `//foo` or `foo.co.`.
@@ -18,8 +29,8 @@ urlInput.oninput = () => {
     return;
   }
 
-
   let url;
+
   try {
     // Hack to allow URLs without scheme.
     url = urlText.match(/^https?:\/\//) ? new URL(urlText) :
@@ -142,4 +153,3 @@ urlInput.oninput = () => {
       `<span id="search">${search}</span>`);
   }
 };
-
