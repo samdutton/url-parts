@@ -55,6 +55,7 @@ function handleUrl() {
   const origin = url.origin;
   let pathname = url.pathname;
   const port = url.port;
+  const protocol = url.protocol;
   const search = url.search;
 
   // Get filename.
@@ -97,12 +98,24 @@ function handleUrl() {
   }
 
   // The spans need to wrap the URL from the outside in:
-  // origin > hostname > site > eTLD+1 > eTLD > TLD.
+  // origin > originWithoutPort > hostname > site > eTLD+1 > eTLD > TLD.
   urlPartsDiv.innerHTML = urlText.replace(origin,
-    `<span id="origin"><span id="site-origin">${origin}</span></span>`);
+    `<span id="origin">${origin}</span>`);
 
-  urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(hostname,
-    `<span id="hostname">${hostname}</span>`);
+  // For site (which includes scheme): add dashed border to TLD+1/eTLD+1, but not port.
+  if (port) {
+    const originWithoutPort = protocol + origin.split(':').slice(-2, -1)[0];
+    urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(originWithoutPort,
+      `<span id="site-origin">${originWithoutPort}</span>`);
+  } else {
+    urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(origin,
+      `<span id="site-origin">${origin}</span>`);
+  }
+
+  // If the URL has a scheme, add a span to add a dashed border for site
+  // between the scheme and the rest of the site.
+  urlPartsDiv.innerHTML =
+    urlPartsDiv.innerHTML.replace(hostname, `<span id="hostname">${hostname}</span>`);
 
   // If the URL uses an eTLD, add spans for eTLD+1 and eTLD.
   if (etld) {
