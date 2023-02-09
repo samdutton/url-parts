@@ -317,7 +317,7 @@ span#site::before {
 }
 
 span#site-origin {
-  border-top: 0.5px dashed #34a853;
+  border-top: 0.5px dotted #34a853;
   margin: 0 1px 0 0;
   padding: 0 0 0 0;
 }
