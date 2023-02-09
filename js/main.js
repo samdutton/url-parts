@@ -99,7 +99,7 @@ function handleUrl() {
   // The spans need to wrap the URL from the outside in:
   // origin > hostname > site > eTLD+1 > eTLD > TLD.
   urlPartsDiv.innerHTML = urlText.replace(origin,
-    `<span id="origin">${origin}</span>`);
+    `<span id="origin"><span id="site-origin">${origin}</span></span>`);
 
   urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(hostname,
     `<span id="hostname">${hostname}</span>`);
@@ -160,8 +160,8 @@ function handleUrl() {
   }
   if (scheme) {
     urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(scheme,
-      `<span id="scheme">${scheme}</span>`);
-    // `<span id="scheme"><span id="site-scheme">${scheme}</span></span>`);
+      // `<span id="scheme">${scheme}</span>`);
+      `<span id="scheme"><span id="site-scheme">${scheme}</span></span>`);
   }
   // If the URL has a hash value *and* a search string,
   // the URL API (for hash) returns the hash and the search string.

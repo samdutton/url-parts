@@ -316,10 +316,16 @@ span#site::before {
   top: -23px;
 }
 
-/* span#site-scheme {
+span#site-origin {
+  border-top: 0.5px dashed #34a853;
+  margin: 0 1px 0 0;
+  padding: 0 0 0 0;
+}
+
+span#site-scheme {
   border-top: 1px solid #34a853;
   padding: 0 0 0 0;
-} */
+}
 
 span#tld {
   border-bottom: 1px solid #ea4335;
