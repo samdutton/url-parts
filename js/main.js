@@ -2,11 +2,14 @@
 SPDX-License-Identifier: Apache-2.0 */
 
 // Public Suffix List: https://publicsuffix.org/list/
-import psl from './psl.js';
+import pslEntries from './psl.js';
+// https://data.iana.org/TLD/tlds-alpha-by-domain.txt
+import tldEntries from './tld.js';
 
 const urlInput = document.querySelector('input#url');
 const urlPartsDiv = document.querySelector('div#url-parts');
 
+if (!isSecureContext) location.protocol = 'https:';
 
 // const searchParams = new URLSearchParams(window.location.search);
 // const urlParam = searchParams.get('url');
@@ -74,20 +77,19 @@ function handleUrl() {
   const scheme =
     urlText.match(/^https:\/\//) ? 'https' :
       urlText.match(/^http:\/\//) ? 'http' : '';
-  // Avoid a couple of common mistakes: single / or missing :
+  // Avoid a few common mistakes: single / or missing : or
   if (scheme === '' &&
-      urlText.match(/^https?:\/\w/) || urlText.match(/^https?:\w/) || urlText.match(/^https?\/\w/)) {
+      (urlText.match(/^https?:\/\w/) || urlText.match(/^https?:\w/) ||
+      urlText.match(/^https?\/\w/) || urlText.match(/^https?\//) || urlText.match(/\:\//))) {
     urlPartsDiv.innerHTML = 'Scheme format not valid.';
     return;
   }
 
   let etldRegExp;
   // Get the eTLD and eTLD+1.
-  const etld = psl.find((el) => {
+  const etld = pslEntries.find((el) => {
     etldRegExp = new RegExp(`\\w+.${el}$`);
     if (el === 'co.uk') {
-      // console.log(etldRegExp);
-      // console.log('hostname', hostname);
     }
     return hostname.match(etldRegExp);
   });
@@ -117,12 +119,16 @@ function handleUrl() {
   urlPartsDiv.innerHTML =
     urlPartsDiv.innerHTML.replace(hostname, `<span id="hostname">${hostname}</span>`);
 
+  // Although the URL standard now mandates that a site must include a scheme,
+  // span#site only wraps the eTLD+1 or TLD+1.
+  // The scheme border is connected with the span#site border by a dotted border,
+  // by wrapping the whole origin (except the port) in span#site-origin.
+
   // If the URL uses an eTLD, add spans for eTLD+1 and eTLD.
   if (etld) {
     urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(etld1,
       `<span id="etld1">${etld1}</span>`);
-    // Site now requires scheme.
-    // TODO: move down origin and hostname spans if there is no site span.
+    // Site now requires scheme (according to the URL standard).
     if (scheme) {
       urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(`<span id="etld1">${etld1}</span>`,
         `<span id="etld1"><span id="site">${etld1}</span></span>`);
@@ -139,22 +145,26 @@ function handleUrl() {
   // Wrap TLD in a span.
   // If the hostname includes an eTLD, urlPartsDiv.innerHTML will be wrapped in a span.
   // Otherwise, the whole hostname will be wrapped in a span.
-  const domainParts = etld ? etld.split('.') : hostname.split('.');
-  const tld = domainParts.pop();
-  // tld may be empty in some scenarios
-  if (tld.match(/\w{2,}/)) {
-    const otherParts = domainParts.join('.');
-    const tldRegExp = new RegExp(`${otherParts}.(${tld})`);
+  const tld = hostname.split('.').pop();
+  // Check if tld is in the list at js/tld.js from the Root Zone Database.
+  if (tldEntries.includes(tld.toUpperCase())) {
+    const partBeforeTld = hostname.split('.').slice(-2, -1);
+    const tldRegExp = new RegExp(`${partBeforeTld}.(${tld})`);
     urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(tldRegExp,
-      otherParts + '.<span id="tld">$1</span>');
+      partBeforeTld + '.<span id="tld">$1</span>');
+  } else {
+    urlPartsDiv.innerHTML = 'TLD not found in the ' +
+      '<a href="https://www.iana.org/domains/root/db">Root Zone Database</a>.';
+    return;
   }
+
+  // TODO: check TLD against https://www.iana.org/domains/root/db
 
   // Hack: if the pathname is / then highlight the / after the origin(not a / after the scheme).
   if (pathname === '/') {
     urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(/\/$/,
       `<span id="pathname">/</span>`);
   } else if (pathname) {
-    console.log('pathname found:', pathname);
     urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(pathname,
       `<span id="pathname">${pathname}</span>`);
   }
