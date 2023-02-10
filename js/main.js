@@ -188,7 +188,7 @@ function handleUrl() {
   }
   // If the URL has a hash value *and* a search string,
   // the URL API (for hash) returns the hash and the search string.
-  if (search && !hash) {
+  if (search) {
     urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(search,
       `<span id="search">${search}</span>`);
   }
