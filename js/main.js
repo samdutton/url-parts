@@ -104,14 +104,15 @@ function handleUrl() {
   urlPartsDiv.innerHTML = urlText.replace(origin,
     `<span id="origin">${origin}</span>`);
 
-  // For site (which includes scheme): add dashed border to TLD+1/eTLD+1, but not port.
-  if (port) {
-    const originWithoutPort = protocol + origin.split(':').slice(-2, -1)[0];
-    urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(originWithoutPort,
-      `<span id="site-origin">${originWithoutPort}</span>`);
-  } else {
-    urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(origin,
-      `<span id="site-origin">${origin}</span>`);
+  // Site now includes scheme, so add a dotted border between the
+  // TLD+1 or eTLD+1 and the scheme.
+  if (scheme) {
+    const siteDottedRegExp = new RegExp(`${scheme}.+${hostname}`);
+    console.log(siteDottedRegExp);
+    console.log(urlPartsDiv.innerHTML);
+    console.log(urlPartsDiv.innerHTML.match(siteDottedRegExp));
+    urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.
+      replace(siteDottedRegExp, '<span id="site-dotted">$&</span>');
   }
 
   // If the URL has a scheme, add a span to add a dashed border for site
@@ -122,7 +123,7 @@ function handleUrl() {
   // Although the URL standard now mandates that a site must include a scheme,
   // span#site only wraps the eTLD+1 or TLD+1.
   // The scheme border is connected with the span#site border by a dotted border,
-  // by wrapping the whole origin (except the port) in span#site-origin.
+  // by wrapping the whole origin (except the port) in span#site-dotted.
 
   // If the URL uses an eTLD, add spans for eTLD+1 and eTLD.
   if (etld) {

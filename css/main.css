@@ -206,6 +206,7 @@ span#etld1::before {
 
 span#filename {
   border-bottom: 1px solid #fbbc04;
+  margin: 0 1px 0 0;
   padding: 0 0 5px 0;
 }
 
@@ -250,13 +251,13 @@ span#hostname::before {
 
 span#origin span#hostname {
   border-top: 1px solid #34a853;
-  padding: 26px 0 0 0;
+  padding: 25px 0 0 0;
 }
 
 span#origin span#hostname::before {
   color: #34a853;
   content: 'hostname';
-  top: -49px;
+  top: -48px;
 }
 
 span#origin {
@@ -326,7 +327,7 @@ span#site::before {
   top: -23px;
 }
 
-span#site-origin {
+span#site-dotted {
   border-top: 0.5px dotted #34a853;
   margin: 0 1px 0 0;
   padding: 0 0 0 0;
