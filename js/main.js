@@ -63,6 +63,13 @@ function handleUrl() {
   const search = url.search;
   const username = url.username;
 
+  // Adding support for username and password is more difficult than I thought :/.
+  if (username || password) {
+    console.log('username:', username, 'password:', password);
+    urlPartsDiv.innerHTML = 'Sorry! Can\'t handle URLs with username or password (yet).';
+    return;
+  }
+
   // Get filename.
   // Need to handle `example.com/foo` as opposed to `example.com/foo.html`
   const endPart = urlText.split('#').shift().
@@ -107,22 +114,22 @@ function handleUrl() {
   // If the URL includes a username and/or password, the origin needs to be labelled with a
   // dotted line between the scheme and the rest of the origin.
   console.log('before', urlText, 'origin', origin);
-  if (origin) {
-    if (username || password) {
-      const originDottedRegExp = new RegExp(`${scheme}.+${hostname}(:${port})?`);
-      console.log(originDottedRegExp);
-      urlPartsDiv.innerHTML = urlText.
-        replace(originDottedRegExp, '<span id="origin-dotted">$&</span>');
-      // Add border to part of origin after scheme.
-      const originWithoutScheme = origin.split('://')[1];
-      urlPartsDiv.innerHTML = urlText.
-        replace(originWithoutScheme, `<span id="origin">${originWithoutScheme}</span>`);
-    } else {
+  // if (origin) {
+    // if (username || password) {
+    //   const originDottedRegExp = new RegExp(`${scheme}.+${hostname}(:${port})?`);
+    //   console.log(originDottedRegExp);
+    //   urlPartsDiv.innerHTML = urlText.
+    //     replace(originDottedRegExp, '<span id="origin-dotted">$&</span>');
+    //   // Add border to part of origin after scheme.
+    //   const originWithoutScheme = origin.split('://')[1];
+    //   urlPartsDiv.innerHTML = urlText.
+    //     replace(originWithoutScheme, `<span id="origin">${originWithoutScheme}</span>`);
+    // } else {
       urlPartsDiv.innerHTML = urlText.
         replace(origin, `<span id="origin">${origin}</span>`);
-    }
-    console.log('after', urlPartsDiv.innerHTML);
-  }
+    // }
+    // console.log('after', urlPartsDiv.innerHTML);
+  // }
 
   // Site now includes scheme, so add a dotted border between the
   // TLD+1 or eTLD+1 and the scheme.
@@ -195,11 +202,10 @@ function handleUrl() {
     urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(hash,
       `<span id="hash">${hash}</span>`);
   }
-  if (password) {
-    console.log('password:', password);
-    urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(`:${password}@`,
-      `:<span id="password">${password}</span>@`);
-  }
+  // if (password) {
+  //   urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(`:${password}@`,
+  //     `:<span id="password">${password}</span>@`);
+  // }
   if (port) {
     urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(`:${port}`,
       `:<span id="port">${port}</span>`);
@@ -216,10 +222,10 @@ function handleUrl() {
     urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(search,
       `<span id="search">${search}</span>`);
   }
-  if (username) {
-    const usernameRegExp = new RegExp(`${username}([@:])`);
-    urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(usernameRegExp,
-      `<span id="username">${username}</span>$1`);
-  }
+  // if (username) {
+  //   const usernameRegExp = new RegExp(`${username}([@:])`);
+  //   urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(usernameRegExp,
+  //     `<span id="username">${username}</span>$1`);
+  // }
 };
 
