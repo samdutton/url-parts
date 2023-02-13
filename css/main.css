@@ -271,6 +271,27 @@ span#origin::before {
   top: -73px;
 }
 
+span#origin-dotted {
+  border-top: 0.5px dotted #34a853;
+  padding: 50px 0 0 0;
+}
+
+span#origin-scheme {
+  border-top: 1px solid #34a853;
+  padding: 50px 0 0 0;
+}
+
+span#password {
+  border-top: 1px solid #795548;
+  padding: 0 0 0 0;
+}
+
+span#password::before {
+  color: #795548;
+  content: 'password';
+  top: -23px;
+}
+
 span#pathname {
   border-top: 1px solid #fbbc04;
   padding: 0 0 0 0;
@@ -347,6 +368,17 @@ span#tld::before {
   color: #ea4335;
   content: 'TLD';
   top: 26px;
+}
+
+span#username {
+  border-top: 1px solid #795548;
+  padding: 0 0 0 0;
+}
+
+span#username::before {
+  color: #795548;
+  content: 'username';
+  top: -23px;
 }
 
 h1 span {
