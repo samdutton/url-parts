@@ -25,12 +25,12 @@ urlInput.oninput = handleUrl;
 function handleUrl() {
   const urlText = urlInput.value;
   // location.href = `${location.host}/?url=${urlText}`;
+  console.log('urlText:', urlText);
 
   // URL API allows URLs such as `https://foo` or `https://f`.
   // Also want to avoid URLs like `//foo` or `foo.co.`, or `@` without a username.
   // URLs like `tv.tv` are valid.
-  if (!urlText || !urlText.match(/\w{2,}\.\w{2,}/) || urlText.match(/$\./ ) ||
-      urlText.match(/\/\/@/)) {
+  if (!urlText || urlText.match(/$\./ ) || urlText.match(/\/\/@/)) {
     urlPartsDiv.innerHTML = '';
     return;
   }
@@ -62,6 +62,11 @@ function handleUrl() {
   const port = url.port;
   const search = url.search;
   const username = url.username;
+
+  if (!hostname) {
+    urlPartsDiv.innerHTML = '';
+    return;
+  }
 
   // Adding support for username and password is more difficult than I thought :/.
   if (username || password) {
