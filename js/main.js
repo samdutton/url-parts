@@ -1,4 +1,4 @@
-/* Copyright 2020 Google LLC.
+/* Copyright 2023 Google LLC.
 SPDX-License-Identifier: Apache-2.0 */
 
 // Public Suffix List: https://publicsuffix.org/list/
