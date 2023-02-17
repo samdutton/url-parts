@@ -20,10 +20,14 @@ if (urlParam) {
   handleUrl();
 }
 
+
 urlInput.oninput = handleUrl;
+// A value is provided in the HTML.
+let urlText = urlInput.value;
+handleUrl();
 
 function handleUrl() {
-  const urlText = urlInput.value;
+  urlText = urlInput.value;
   // console.log('urlText:', urlText);
 
   // Begin by removing `?url= ...` search string.
