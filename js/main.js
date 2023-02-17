@@ -24,19 +24,28 @@ urlInput.oninput = handleUrl;
 
 function handleUrl() {
   const urlText = urlInput.value;
-  // location.href = `${location.host}/?url=${urlText}`;
   console.log('urlText:', urlText);
+  window.history.replaceState({}, '', `${window.location.origin}?url=${urlText}`);
 
   // URL API allows URLs such as `https://foo` or `https://f`.
   // Also want to avoid URLs like `//foo` or `foo.co.`, or `@` without a username.
   // URLs like `tv.tv` are valid.
-  if (!urlText || urlText.match(/$\./ ) || urlText.match(/\/\/@/)) {
+  if (!urlText || !urlText.match(/\w{2,}\.\w{2,}/ ) || urlText.match(/$\./ ) ||
+      urlText.match(/\/\/@/)) {
     urlPartsDiv.innerHTML = '';
     return;
   }
 
+  if (!urlText.match(/^[\w:\/\?#\.\@= %]+$/i)) {
+    urlPartsDiv.innerHTML =
+      '😾 Sorry! Only ASCII for the moment.<br><br>' +
+      'We\'re working on providing <a href="https://github.com/mathiasbynens/punycode.js">' +
+      'Punycode</a> support and non-ASCII in pathnames.';
+    return;
+  }
+
   if (urlText.match(/\s/)) {
-    urlPartsDiv.innerHTML = 'URL includes a space.';
+    urlPartsDiv.innerHTML = 'URL should not include spaces.';
     return;
   }
 
@@ -118,22 +127,22 @@ function handleUrl() {
 
   // If the URL includes a username and/or password, the origin needs to be labelled with a
   // dotted line between the scheme and the rest of the origin.
-  console.log('before', urlText, 'origin', origin);
+  // console.log('before', urlText, 'origin', origin);
   // if (origin) {
-    // if (username || password) {
-    //   const originDottedRegExp = new RegExp(`${scheme}.+${hostname}(:${port})?`);
-    //   console.log(originDottedRegExp);
-    //   urlPartsDiv.innerHTML = urlText.
-    //     replace(originDottedRegExp, '<span id="origin-dotted">$&</span>');
-    //   // Add border to part of origin after scheme.
-    //   const originWithoutScheme = origin.split('://')[1];
-    //   urlPartsDiv.innerHTML = urlText.
-    //     replace(originWithoutScheme, `<span id="origin">${originWithoutScheme}</span>`);
-    // } else {
-      urlPartsDiv.innerHTML = urlText.
-        replace(origin, `<span id="origin">${origin}</span>`);
-    // }
-    // console.log('after', urlPartsDiv.innerHTML);
+  // if (username || password) {
+  //   const originDottedRegExp = new RegExp(`${scheme}.+${hostname}(:${port})?`);
+  //   console.log(originDottedRegExp);
+  //   urlPartsDiv.innerHTML = urlText.
+  //     replace(originDottedRegExp, '<span id="origin-dotted">$&</span>');
+  //   // Add border to part of origin after scheme.
+  //   const originWithoutScheme = origin.split('://')[1];
+  //   urlPartsDiv.innerHTML = urlText.
+  //     replace(originWithoutScheme, `<span id="origin">${originWithoutScheme}</span>`);
+  // } else {
+  urlPartsDiv.innerHTML = urlText.
+    replace(origin, `<span id="origin">${origin}</span>`);
+  // }
+  // console.log('after', urlPartsDiv.innerHTML);
   // }
 
   // Site now includes scheme, so add a dotted border between the

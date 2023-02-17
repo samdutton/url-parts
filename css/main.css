@@ -1,4 +1,4 @@
-/* Copyright 2020 Google LLC.
+/* Copyright 2023 Google LLC.
 SPDX-License-Identifier: Apache-2.0 */
 
 a {
@@ -16,12 +16,6 @@ a#viewSource {
   display: block;
   margin: 1.3em 0 0 0;
   padding: 1em 0 0 0;
-}
-
-div#links a {
-  display: block;
-  line-height: 1.3em;
-  margin: 0 0 1.5em 0;
 }
 
 h1 a {
@@ -174,7 +168,7 @@ section:last-of-type {
   padding: 0 0 1em 0;
 }
 
-div#container span::before {
+div#url-parts span::before {
   display: inline-block;
   font-family: 'Google Sans', sans-serif;
   font-size: 14px;
@@ -206,7 +200,6 @@ span#etld1::before {
 
 span#filename {
   border-bottom: 1px solid #fbbc04;
-  margin: 0 1px 0 0;
   padding: 0 0 5px 0;
 }
 
@@ -218,6 +211,7 @@ span#filename::before {
 
 span#hash {
   border-bottom: 1px solid #fbbc04;
+  margin: 0 0 0 2px;
   padding: 0 0 5px 0;
 }
 
@@ -240,67 +234,68 @@ span#search + span#hash::before {
 
 span#hostname {
   border-top: 1px solid #34a853;
-  padding: 0 0 0 0;
+  padding: 2px 0 0 0;
 }
 
 span#hostname::before {
   color: #34a853;
   content: 'hostname';
-  top: -23px;
+  top: -25px;
 }
 
 span#origin span#hostname {
   border-top: 1px solid #34a853;
-  padding: 25px 0 0 0;
+  padding: 27px 0 0 0;
 }
 
 span#origin span#hostname::before {
   color: #34a853;
   content: 'hostname';
-  top: -48px;
+  top: -50px;
 }
 
 span#origin {
   border-top: 1px solid #34a853;
-  padding: 50px 0 0 0;
+  padding: 52px 0 0 0;
 }
 
 span#origin::before {
   color: #34a853;
   content: 'origin';
-  top: -73px;
+  top: -75px;
 }
 
 span#origin-dotted {
   border-top: 0.5px dotted #34a853;
-  padding: 50px 0 0 0;
+  padding: 52px 0 0 0;
 }
 
 span#origin-scheme {
   border-top: 1px solid #34a853;
-  padding: 50px 0 0 0;
+  padding: 52px 0 0 0;
 }
 
 span#password {
-  border-top: 1px solid #795548;
-  padding: 0 0 0 0;
+  border-bottom: 1px solid #795548;
+  padding: 0 0 5px 0;
 }
 
 span#password::before {
   color: #795548;
   content: 'password';
-  top: -23px;
+  top: 25px;
 }
 
 span#pathname {
   border-top: 1px solid #fbbc04;
-  padding: 0 0 0 0;
+  margin: 0 0 0 2px;
+  padding: 2px 0 0 0;
 }
 
 span#pathname::before {
   color: #fbbc04;
   content: 'pathname';
-  top: -23px;
+  top: -25px;
 }
 
 span#port {
@@ -327,7 +322,7 @@ span#scheme::before {
 
 span#search {
   border-bottom: 1px solid #fbbc04;
-  margin: 0 0 0 1px;
+  margin: 0 0 0 2px;
   padding: 0 0 5px 0;
 }
 
@@ -339,24 +334,23 @@ span#search::before {
 
 span#site {
   border-top: 1px solid #34a853;
-  padding: 0 0 0 0;
+  padding: 2px 0 0 0;
 }
 
 span#site::before {
   color: #34a853;
   content: 'site';
-  top: -23px;
+  top: -25px;
 }
 
 span#site-dotted {
   border-top: 0.5px dotted #34a853;
-  margin: 0 1px 0 0;
-  padding: 0 0 0 0;
+  padding: 2px 0 0 0;
 }
 
 span#site-scheme {
   border-top: 1px solid #34a853;
-  padding: 0 0 0 0;
+  padding: 2px 0 0 0;
 }
 
 span#tld {
@@ -372,13 +366,13 @@ span#tld::before {
 
 span#username {
   border-top: 1px solid #795548;
-  padding: 0 0 0 0;
+  padding: 2px 0 0 0;
 }
 
 span#username::before {
   color: #795548;
   content: 'username';
-  top: -23px;
+  top: -25px;
 }
 
 h1 span {
