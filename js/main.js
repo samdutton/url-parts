@@ -24,8 +24,11 @@ urlInput.oninput = handleUrl;
 
 function handleUrl() {
   const urlText = urlInput.value;
-  console.log('urlText:', urlText);
-  window.history.replaceState({}, '', `${window.location.origin}?url=${urlText}`);
+  // console.log('urlText:', urlText);
+
+  // Begin by removing `?url= ...` search string.
+  // This is added later if urlText is valid and can be handled here.
+  window.history.replaceState({}, '', `${window.location.origin}`);
 
   // URL API allows URLs such as `https://foo` or `https://f`.
   // Also want to avoid URLs like `//foo` or `foo.co.`, or `@` without a username.
@@ -36,6 +39,7 @@ function handleUrl() {
     return;
   }
 
+  // TODO: support non-ASCII hostnames and pathnames.
   if (!urlText.match(/^[\w:\/\?#\.\@= %]+$/i)) {
     urlPartsDiv.innerHTML =
       '😾 Sorry! Only ASCII for the moment.<br><br>' +
@@ -84,6 +88,10 @@ function handleUrl() {
     return;
   }
 
+  // urlText is a valid URL that can be handled here,
+  // so update the `?url= ...` search string in the URL bar.
+  window.history.replaceState({url: urlText}, '', `${window.location.origin}?url=${urlText}`);
+
   // Get filename.
   // Need to handle `example.com/foo` as opposed to `example.com/foo.html`
   const endPart = urlText.split('#').shift().
@@ -97,6 +105,7 @@ function handleUrl() {
   if (pathname === '/' && !urlText.match(/\/$/)) {
     pathname = '';
   }
+
   const scheme =
     urlText.match(/^https:\/\//) ? 'https' :
       urlText.match(/^http:\/\//) ? 'http' : '';
@@ -125,28 +134,11 @@ function handleUrl() {
   // The spans need to wrap the URL from the outside in:
   // origin > originWithoutPort > hostname > site > eTLD+1 > eTLD > TLD.
 
-  // If the URL includes a username and/or password, the origin needs to be labelled with a
-  // dotted line between the scheme and the rest of the origin.
-  // console.log('before', urlText, 'origin', origin);
-  // if (origin) {
-  // if (username || password) {
-  //   const originDottedRegExp = new RegExp(`${scheme}.+${hostname}(:${port})?`);
-  //   console.log(originDottedRegExp);
-  //   urlPartsDiv.innerHTML = urlText.
-  //     replace(originDottedRegExp, '<span id="origin-dotted">$&</span>');
-  //   // Add border to part of origin after scheme.
-  //   const originWithoutScheme = origin.split('://')[1];
-  //   urlPartsDiv.innerHTML = urlText.
-  //     replace(originWithoutScheme, `<span id="origin">${originWithoutScheme}</span>`);
-  // } else {
   urlPartsDiv.innerHTML = urlText.
     replace(origin, `<span id="origin">${origin}</span>`);
-  // }
-  // console.log('after', urlPartsDiv.innerHTML);
-  // }
 
-  // Site now includes scheme, so add a dotted border between the
-  // TLD+1 or eTLD+1 and the scheme.
+  // According to the URL standard, site must now include a scheme, so add a
+  // dotted border between the TLD+1 or eTLD+1 and the scheme.
   if (scheme) {
     const siteDottedRegExp = new RegExp(`${scheme}.+${hostname}`);
     urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.
@@ -197,9 +189,8 @@ function handleUrl() {
     return;
   }
 
-  // TODO: check TLD against https://www.iana.org/domains/root/db
-
-  // Hack: if the pathname is / then highlight the / after the origin(not a / after the scheme).
+  // Hack: if the pathname is / then highlight the / after the origin
+  // (not a / after the scheme).
   if (pathname === '/') {
     urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(/\/$/,
       `<span id="pathname">/</span>`);
@@ -216,10 +207,13 @@ function handleUrl() {
     urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(hash,
       `<span id="hash">${hash}</span>`);
   }
+
+  // TODO: surprisingly complex to get this to work with other URL parts!
   // if (password) {
   //   urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(`:${password}@`,
   //     `:<span id="password">${password}</span>@`);
   // }
+
   if (port) {
     urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(`:${port}`,
       `:<span id="port">${port}</span>`);
@@ -236,6 +230,8 @@ function handleUrl() {
     urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(search,
       `<span id="search">${search}</span>`);
   }
+
+  // TODO: surprisingly complex to get this to work with other URL parts!
   // if (username) {
   //   const usernameRegExp = new RegExp(`${username}([@:])`);
   //   urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.replace(usernameRegExp,
