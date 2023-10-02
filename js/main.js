@@ -11,23 +11,19 @@ const urlPartsDiv = document.querySelector('div#url-parts');
 
 if (!isSecureContext) location.protocol = 'https:';
 
+urlInput.oninput = handleUrl;
 // const searchParams = new URLSearchParams(window.location.search);
 // const urlParam = searchParams.get('url');
-// Get the value 'manually' to allow for hash values.
+// Get the value 'manually' (not using the URL API) to allow for hash values.
 const urlParam = location.href.split('?url=')[1];
 if (urlParam) {
   urlInput.value = urlParam;
-  handleUrl();
 }
 
-
-urlInput.oninput = handleUrl;
-// A value is provided in the HTML.
-let urlText = urlInput.value;
 handleUrl();
 
 function handleUrl() {
-  urlText = urlInput.value;
+  let urlText = urlInput.value;
   // console.log('urlText:', urlText);
 
   // Begin by removing `?url= ...` search string.
