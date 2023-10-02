@@ -194,7 +194,7 @@ span#etld1 {
 
 span#etld1::before {
   color: #ea4335;
-  content: 'eTLD+1';
+  content: 'Registrable domain (aka eTLD+1)';
   top: 75px;
 }
 
