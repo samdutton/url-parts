@@ -10,7 +10,7 @@ If you find bugs with this demo or would like to suggest changes, please message
 
 # Find out more
 
-For more information see [URL parts](https://web.dev/url).
+For more information see [What are the parts of a URL?](https://web.dev/url).
 
 
 # License

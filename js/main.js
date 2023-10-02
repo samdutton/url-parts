@@ -65,7 +65,7 @@ function handleUrl() {
     return;
   }
 
-  console.log('url', url);
+  // console.log('url', url);
 
   const hash = url.hash;
   const hostname = url.hostname;
@@ -121,8 +121,8 @@ function handleUrl() {
   // Get the eTLD and eTLD+1.
   const etld = pslEntries.find((el) => {
     etldRegExp = new RegExp(`\\w+.${el}$`);
-    if (el === 'co.uk') {
-    }
+    // if (el === 'co.uk') {
+    // }
     return hostname.match(etldRegExp);
   });
   let etld1;
