@@ -1,7 +1,10 @@
 /* Copyright 2023 Google LLC.
 SPDX-License-Identifier: Apache-2.0 */
 
-// Public Suffix List: https://publicsuffix.org/list/
+// To improve display when the page is not in an iframe (in an article or blog post or whatever).
+if (window.parent === window) {
+  document.documentElement.classList.add('not-in-iframe');
+}
 
 // Public Suffix List: https://publicsuffix.org/list/
 import pslEntries from './psl.js';
@@ -10,6 +13,8 @@ import tldEntries from './tld.js';
 
 const urlInput = document.querySelector('input#url');
 const urlPartsDiv = document.querySelector('div#url-parts');
+
+urlInput.focus({preventScroll: true});
 
 if (!isSecureContext) location.protocol = 'https:';
 
@@ -41,11 +46,13 @@ function handleUrl() {
     return;
   }
 
-  // TODO: support non-ASCII hostnames and pathnames.
-  if (!urlText.match(/^[\w:\/\?#\.\@= %]+$/i)) {
+  // TODO: support username:password, 
+  // and non-ASCII hostnames and pathnames.
+  if (!urlText.match(/^[\w:\/\?#\.\@= %&;~ '\+-]+$/i)) {
     urlPartsDiv.innerHTML =
-      '😾 Sorry! Only ASCII for the moment.<br><br>' +
-      'We\'re working on providing <a href="https://github.com/mathiasbynens/punycode.js">' +
+      '😿 Sorry! Only ASCII for the moment.<br><br>' +
+      'We\'re working on supporting username:password, <br>' +
+      'and providing <a href="https://github.com/mathiasbynens/punycode.js">' +
       'Punycode</a> support and non-ASCII in pathnames.';
     return;
   }
@@ -67,7 +74,7 @@ function handleUrl() {
     return;
   }
 
-  // console.log('url', url);
+  //console.log('url', url);
 
   const hash = url.hash;
   const hostname = url.hostname;
@@ -84,6 +91,7 @@ function handleUrl() {
   }
 
   // Adding support for username and password is more difficult than I thought :/.
+  // Besides they are very bad practice
   if (username || password) {
     console.log('username:', username, 'password:', password);
     urlPartsDiv.innerHTML = 'Sorry! Can\'t handle URLs with username or password (yet).';
@@ -123,16 +131,16 @@ function handleUrl() {
   // Note that the PSL includes single-part entries (com, au, etc.)
   // as well as multi-part entries (currently up to five parts).
   // All assigned TLDs in the Root Zone Database are in the PSL.
-
+  
   let etld = '';
   for (const pslEntry of pslEntries) {
     // Hostname is not valid if it matches a PSL entry.
     if (hostname === pslEntry) {
-      urlPartsDiv.innerHTML = `Not a valid URL: hostname <span id="input-hostname">${hostname}</span> is an ` +
-        `eTLD (see the <a href="https://publicsuffix.org/">Public Suffix List</a>).`;
+      urlPartsDiv.innerHTML = `Not a valid URL:hostname <span id="input-hostname">${hostname}</span> is an ` +
+        `eTLD. <br><br>(See the <a href="https://publicsuffix.org/">Public Suffix List</a>.)`;
       return;
     }
-
+  
     // Check for match at end of hostname only.
     // Need to add \\. to avoid accepting hostnames that end in a valid (e)TLD, such as 'web.xcom'.
     const pslEntryRegExp = new RegExp(`\\.${pslEntry.replaceAll('.', '\.')}$`);
@@ -141,26 +149,27 @@ function handleUrl() {
       etld = pslEntry;
     }
   }
-
+  
   console.log('etld', etld);
 
   if (!etld) {
     urlPartsDiv.innerHTML = `No eTLD from the <a href="https://publicsuffix.org/">Public Suffix List</a>` +
-      ` found in hostname <span id="input-hostname">${hostname}</span>.`;
+      ` found in <br>hostname <span id="input-hostname">${hostname}</span>.`;
     return;
   }
 
   const etld1 = hostname.match(`[^\/\.]+\.${etld}`)[0];
-
+  
   if (!etld1) {
     replace(`eTLD ${etld} specified, but no eTLD+1.`)
   }
 
+  urlPartsDiv.innerHTML = urlText.replaceAll('&','&amp;');
 
   // The spans need to wrap the URL from the outside in:
   // origin > originWithoutPort > hostname > site > eTLD+1 > eTLD > TLD.
 
-  urlPartsDiv.innerHTML = urlText.
+  urlPartsDiv.innerHTML = urlPartsDiv.innerHTML.
     replace(origin, `<span id="origin">${origin}</span>`);
 
   // Although the URL standard now mandates that a site must include a scheme,
@@ -188,8 +197,9 @@ function handleUrl() {
     // replace(site, `<span id="site">${site}</span>`);
   }
 
-  replace(etld,
-    `<span id="etld">${etld}</span>`);
+  // Add the dot to avoid replacing common etds (e.g. "it" which is part of "site-dotted" otherwise)
+  replace('.' + etld,
+    `.<span id="etld">${etld}</span>`);
 
   // Wrap TLD in a span.
   // If the hostname includes an eTLD, urlPartsDiv.innerHTML will be wrapped in a span.
@@ -224,30 +234,64 @@ function handleUrl() {
   }
   if (hash) {
     replace(hash,
-      `<span id="hash">${hash}</span>`);
+      `<span id="hash">#<span id="fragment">${hash.slice(1)}</span></span>`);
+    // Special handling for escaped characters
+    if (hash.includes('&')) {
+      replace(hash.replaceAll('&','&amp;'),
+        `<span id="hash">#<span id="fragment">${hash.replaceAll('&','&amp;').slice(1)}</span></span>`);
+    }
+    
+    if (hash.includes(':~:text=')) {
+      replace(':~:text=',
+        `<span id="text-fragment">:~:text=`);
+      replace(/$/, `</span>`);
+    }
   }
 
-  // // TODO: surprisingly complex to get this to work with other URL parts!
-  // // if (password) {
-  // replace(`:${password}@`,
-  // //     `:<span id="password">${password}</span>@`);
-  // // }
+  // TODO: surprisingly complex to get this to work with other URL parts!  
+  //       For example: origin does not include username and password but includes scheme
+  //       Possible need a dashed thing, similar to site
+  //
+  //   if (username) {
+  //     replace(username,
+  //       `<span id="username">${username}</span>`);
+  //     // Special handling for escaped characters
+  //     if (username.includes('%40') || username.includes('%3A')) {
+  //       replace(username.replaceAll('%40','@').replaceAll('%3A',':'),
+  //         `<span id="username">${username.replaceAll('%40','@').replaceAll('%3A',':')}</span>`);
+  //     }
+  //   }
+
+  //   if (password) {
+  //     replace(password,
+  //       `<span id="password">${password}</span>`);
+  //     // // Special handling for escaped characters
+  //     if (password.includes('%40') || password.includes('%3A')) {
+  //       replace(password.replaceAll('%40','@').replaceAll('%3A',':'),
+  //         `<span id="password">${password.replaceAll('%40','@').replaceAll('%3A',':')}</span>`);
+  //     }
+  //   }
 
   if (port) {
     replace(`:${port}`,
       `:<span id="port">${port}</span>`);
   }
   if (scheme) {
-    replace(scheme,
+    replace(scheme + ':',
       // `<span id="scheme">${scheme}</span>`);
-      `<span id="scheme"><span id="origin-scheme"><span id="site-scheme">` +
-          `${scheme}</span></span></span>`);
+      `<span id="protocol"><span id="scheme"><span id="origin-scheme"><span id="site-scheme">` +
+          `${scheme}</span></span></span>:</span>`);
   }
   // If the URL has a hash value *and* a search string,
   // the URL API (for hash) returns the hash and the search string.
   if (search) {
     replace(search,
-      `<span id="search">${search}</span>`);
+      `<span id="search">?<span id="query">${search.slice(1)}</span></span>`);
+    // Special handling for escaped characters
+    if (search.includes('&')) {
+      replace(search.replaceAll('&','&amp;'),
+        `<span id="search">?<span id="query">${search.slice(1).replaceAll('&','&amp;')}</span></span>`);
+    }
   }
 }
 

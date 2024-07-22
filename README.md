@@ -1,19 +1,27 @@
 # URL parts
 
-View the site, origin, and other parts of a URL: [url-parts.glitch.me](https://url-parts.glitch.me).
+View the site, origin, and other parts of a URL.
+<br><br>
 
-
-# Comments and suggestions
+## Comments and suggestions
 
 If you find bugs with this demo or would like to suggest changes, please message [@sw12](https//twitter.com/sw12).
+<br><br>
 
+## TODO
 
-# Find out more
+* Set up service and cron jobs to maintain [psl.js](https://glitch.com/edit/#!/url-parts?path=js%2Fpsl.js) 
+and [tld.js](https://glitch.com/edit/#!/url-parts?path=js%2Ftld.js).
+* Allow `username:password` and explain in article.
+* Allow multiple search parameters.
+<br><br>
 
-For more information see [What are the parts of a URL?](https://web.dev/articles/url-parts).
+## Find out more
 
+For more information see [What are the parts of a URL?](https://web.dev/url).
+<br><br>
 
-# License
+## License
 
 Copyright 2023 Google, Inc.
 
