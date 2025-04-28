@@ -5,8 +5,7 @@ View the site, origin, and other parts of a URL.
 
 ## Comments and suggestions
 
-If you find bugs with this demo or would like to suggest changes, please message [@sw12](https//twitter.com/sw12).
-<br><br>
+If you find bugs with this demo or would like to suggest changes, please [file an issue](https://github.com/samdutton/url-parts/issues/new).
 
 ## TODO
 
