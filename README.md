@@ -18,7 +18,7 @@ and [tld.js](https://glitch.com/edit/#!/url-parts?path=js%2Ftld.js).
 
 ## Find out more
 
-For more information see [What are the parts of a URL?](https://web.dev/url).
+For more information see [What are the parts of a URL?](https://web.dev/articles/url-parts).
 <br><br>
 
 ## License
